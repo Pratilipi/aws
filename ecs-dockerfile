@@ -1,0 +1,11 @@
+from $DOCKER_IMAGE
+
+# Create app directory
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+# Copy GCP Service Account keyfile
+COPY ecs-keyfile-gcp-$STAGE.json /usr/src/app/keyfile.json
+
+# Setting Google Application Default Credentials for Google APIs
+ENV GOOGLE_APPLICATION_CREDENTIALS=/usr/src/app/keyfile.json
