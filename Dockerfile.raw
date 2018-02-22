@@ -1,10 +1,13 @@
-FROM $DOCKER_REPO/node:8.0.0
+FROM $DOCKER_REPO/node:8.3.0
 
 # Install app dependencies
 COPY package.json .
 RUN npm install
 
 # Bundle app source
+COPY neo4jUtil.js .
+COPY TestController.js .
+COPY TestService.js .
 COPY server.js .
 
 EXPOSE 80
