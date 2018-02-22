@@ -5,8 +5,9 @@
         {
             "name": "$APP_NAME",
             "image": "$DOCKER_REPO/$APP_NAME:$APP_VERSION",
-            "cpu": 100,
-            "memory": 128,
+            "cpu": 128,
+			"memory": 256,
+            "memoryReservation": 256,
             "portMappings": [
                 {
                     "hostPort": 0,
@@ -14,7 +15,14 @@
                     "protocol": "tcp"
                 }
             ],
-            "essential": true
+            "essential": true,
+            "logConfiguration": {
+                 "logDriver": "awslogs",
+                 "options": {
+                     "awslogs-group": "$PREFIX$STAGE-hello-node",
+                     "awslogs-region": "ap-southeast-1"
+                 }
+            }
         }
     ]
 }
